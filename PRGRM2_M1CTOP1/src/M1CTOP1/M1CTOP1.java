@@ -229,10 +229,11 @@ public class M1CTOP1
 						case "HELP":
 							System.out.println("Command Information:");
 							System.out.println("\tHELP displays a list of commands and information about how to use them.");
-							System.out.println("\tOPEN allows the user to create a new account.");
-							System.out.println("\tCLOSE allows the user to close an account.");
-							System.out.println("\tSELECT allows the user to select and view a specific account.");
-							System.out.println("\tEXIT allows the user to quit and exit the program.\n");
+							System.out.println("\tCHNGFIRST allows the user to change the first name.");
+							System.out.println("\tCHNGLAST allows the user to change the last name.");
+							System.out.println("\tDEPOSIT allows the user to deposit an amount into the account.");
+							System.out.println("\tWITHDRAWL allows the user to withdraw from the account.");
+							System.out.println("\tEXIT allows the user to exit the account.\n");
 							break;
 						case "CHNGFIRST":
 							if (M1CTOP1.user_input_list.length == 1)
@@ -368,7 +369,7 @@ public class M1CTOP1
 							{
 								M1CTOP1.displayErrorMessage();
 								
-								System.out.print("Are you sure you want to quit? (y/n) > ");
+								System.out.print("Are you sure you want to exit the account? (y/n) > ");
 								
 								M1CTOP1.user_input = M1CTOP1.inputScanner.nextLine();
 								
