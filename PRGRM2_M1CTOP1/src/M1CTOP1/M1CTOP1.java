@@ -192,24 +192,32 @@ public class M1CTOP1
 			System.out.print("Enter Account Number to Select: ");
 			M1CTOP1.user_input = M1CTOP1.inputScanner.nextLine();
 			
-			if (M1CTOP1.user_input.length() == 0)
+			try
 			{
-				switch (blankCount)
+				if (M1CTOP1.user_input.length() == 0)
 				{
-					case 0:
-						blankCount++;
-						M1CTOP1.displayError = "Account Number cannot be blank.\nPress enter again to cancel.";
-						break;
-					case 1:
-						return;
+					switch (blankCount)
+					{
+						case 0:
+							blankCount++;
+							M1CTOP1.displayError = "Account Number cannot be blank.\nPress enter again to cancel.";
+							break;
+						case 1:
+							return;
+					}
+				}
+				else
+				{
+					blankCount = 0;
+					account    = M1CTOP1.accounts.getAccount(Long.parseLong(M1CTOP1.user_input));
+					break;
 				}
 			}
-			else
+			catch (NumberFormatException e)
 			{
-				blankCount = 0;
-				account    = M1CTOP1.accounts.getAccount(Long.parseLong(M1CTOP1.user_input));
-				break;
+				M1CTOP1.displayError = ("\"" + M1CTOP1.user_input + "\" is invalid. The Account Number must be a number.");
 			}
+			
 		} while(true);
 		
 		outerloop:
@@ -311,22 +319,29 @@ public class M1CTOP1
 									System.out.print("Enter Deposit Amount: ");
 									M1CTOP1.user_input = M1CTOP1.inputScanner.nextLine();
 									
-									if (M1CTOP1.user_input.length() == 0)
+									try
 									{
-										switch (blankCount)
+										if (M1CTOP1.user_input.length() == 0)
 										{
-											case 0:
-												blankCount++;
-												M1CTOP1.displayError = "Deposit Amount cannot be blank.\nPress enter again to cancel.";
-												break;
-											case 1:
-												break innerloop;
+											switch (blankCount)
+											{
+												case 0:
+													blankCount++;
+													M1CTOP1.displayError = "Deposit Amount cannot be blank.\nPress enter again to cancel.";
+													break;
+												case 1:
+													break innerloop;
+											}
+										}
+										else
+										{
+											blankCount = 0;
+											account.deposit(Double.parseDouble(M1CTOP1.user_input));
 										}
 									}
-									else
+									catch (NumberFormatException e)
 									{
-										blankCount = 0;
-										account.deposit(Double.parseDouble(M1CTOP1.user_input));
+										M1CTOP1.displayError = ("\"" + M1CTOP1.user_input + "\" is invalid. The deposit amount must be a number.");
 									}
 								} while(M1CTOP1.user_input.length() == 0);
 							}
@@ -343,22 +358,29 @@ public class M1CTOP1
 									System.out.print("Enter Withdrawl Amount: ");
 									M1CTOP1.user_input = M1CTOP1.inputScanner.nextLine();
 									
-									if (M1CTOP1.user_input.length() == 0)
+									try
 									{
-										switch (blankCount)
+										if (M1CTOP1.user_input.length() == 0)
 										{
-											case 0:
-												blankCount++;
-												M1CTOP1.displayError = "Withdrawl Amount cannot be blank.\nPress enter again to cancel.";
-												break;
-											case 1:
-												break innerloop;
+											switch (blankCount)
+											{
+												case 0:
+													blankCount++;
+													M1CTOP1.displayError = "Withdrawl Amount cannot be blank.\nPress enter again to cancel.";
+													break;
+												case 1:
+													break innerloop;
+											}
+										}
+										else
+										{
+											blankCount = 0;
+											account.processWithdrawl(Double.parseDouble(M1CTOP1.user_input));
 										}
 									}
-									else
+									catch (NumberFormatException e)
 									{
-										blankCount = 0;
-										account.processWithdrawl(Double.parseDouble(M1CTOP1.user_input));
+										M1CTOP1.displayError = ("\"" + M1CTOP1.user_input + "\" is invalid. The deposit amount must be a number.");
 									}
 								} while(M1CTOP1.user_input.length() == 0);
 							}
