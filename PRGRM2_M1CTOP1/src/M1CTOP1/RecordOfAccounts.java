@@ -97,7 +97,7 @@ public class RecordOfAccounts
 		
 		for (int i = 1; (i < mxLngths.length); i++)
 		{
-			mxLngths[i] = 0;
+			mxLngths[i] = accounts[0][i].length();
 		}
 		
 		this.iterator = this.first;

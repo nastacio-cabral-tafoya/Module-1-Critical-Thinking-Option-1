@@ -7,10 +7,11 @@ import java.util.ArrayList;
 public class BankAccount
 {
 	protected ArrayList<String> transactions;
+	protected DecimalFormat     df;
 	
 	private String firstName;
 	private String lastName;
-	private long    accountID;
+	private long   accountID;
 	private double balance;
 	
 	public static int summaryFieldCount = 4;
@@ -24,17 +25,17 @@ public class BankAccount
 	
 	public BankAccount()
 	{
+		this.df                = new DecimalFormat("#.##");
+		this.transactions      = new ArrayList<String>();
 		this.firstName         = "";
 		this.lastName          = "";
 		this.accountID         = 0;
 		this.balance           = 0.00;
-		this.transactions      = new ArrayList<String>();
 	}
 	
 	private void updateTCList(double amt, String description)
 	{
-		DecimalFormat df         = new DecimalFormat("#.##");
-		double        displayAmt = amt;
+		double displayAmt = amt;
 		
 		if (displayAmt < 0)
 		{
@@ -140,7 +141,7 @@ public class BankAccount
 	
 	public String [] accountSummary()
 	{
-		return (new String[]{String.valueOf(this.accountID), this.firstName, this.lastName, String.valueOf(this.balance)});
+		return (new String[]{String.valueOf(this.accountID), this.firstName, this.lastName, ("$" + this.df.format(this.balance))});
 	}
 	
 	protected void id(long id)
